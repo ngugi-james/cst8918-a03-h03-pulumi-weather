@@ -22,13 +22,16 @@ const memory = config.requireNumber('memory')
 const resourceGroup = new resources.ResourceGroup(`${prefixName}-rg`)
 
 // Create the container registry.
-const registry = new containerregistry.Registry(`${prefixName}ACR`, {
-  resourceGroupName: resourceGroup.name,
-  adminUserEnabled: true,
-  sku: {
-    name: containerregistry.SkuName.Basic,
+const registry = new containerregistry.Registry(
+  `${prefixName.toLowerCase()}acr`,
+  {
+    resourceGroupName: resourceGroup.name,
+    adminUserEnabled: true,
+    sku: {
+      name: containerregistry.SkuName.Basic,
+    },
   },
-})
+)
 
 // Get the authentication credentials for the container registry.
 const registryCredentials = containerregistry
